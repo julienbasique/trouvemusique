@@ -1,7 +1,8 @@
-"""Le questionnaire — léger, jamais intrusif : des goûts et des lieux de vie,
-PAS de questions personnelles (leçon v1.1→v1.2 : « trop perso » interdit —
-pas d'identité, pas de souvenirs intimes, pas d'humeur mentale).
+"""Le questionnaire — léger, jamais intrusif : des goûts, des lieux de vie
+ET 5 VRAIES questions musicales (règle de Julien : 5 sur 15 sur la musique).
 
+PAS de questions personnelles (v1.1→v1.2 : « trop perso » interdit — pas
+d'identité, pas de souvenirs intimes, pas d'humeur mentale).
 15 questions au total (14 à option + l'artiste). Une option = dico de points.
 """
 
@@ -79,78 +80,6 @@ QUESTIONS = [
         ],
     },
     {
-        "id": "transport",
-        "question": "Au quotidien, ta façon de te déplacer ?",
-        "options": [
-            {"id": "pied_velo", "libelle": "À pied ou à vélo",
-             "points": {"indie": 2, "lofi": 1.5, "reggae": 1.5}},
-            {"id": "fenetre", "libelle": "En voiture, la fenêtre ouverte",
-             "points": {"rock_classique": 2, "electro": 1.5, "rap_fr": 1.5}},
-            {"id": "train", "libelle": "En train, on observe",
-             "points": {"classique": 2, "jazz": 1.5, "cinema": 1.5, "lofi": 1}},
-            {"id": "deux_roues", "libelle": "Le deux-roues, moteur ou pédales",
-             "points": {"rap_fr": 1.5, "metal": 1.5, "electro": 1.5}},
-            {"id": "transports", "libelle": "Les transports, j'observe les gens",
-             "points": {"indie": 1.5, "lofi": 1.5, "rap_fr": 1}},
-            {"id": "longue_marche", "libelle": "La longue marche, sans but",
-             "points": {"lofi": 2, "jazz": 1.5, "classique": 1}},
-        ],
-    },
-    {
-        "id": "film",
-        "question": "Le film ou la série qui t'attire ce soir ?",
-        "options": [
-            {"id": "comedie", "libelle": "La comédie qui déconne",
-             "points": {"pop": 2, "funk": 1.5, "rap_fr": 1}},
-            {"id": "thriller", "libelle": "Le thriller qui tient éveillé",
-             "points": {"techno": 2, "cinema": 2, "metal": 1}},
-            {"id": "docu", "libelle": "Le documentaire qui apprend des choses",
-             "points": {"indie": 2, "jazz": 1.5, "classique": 1}},
-            {"id": "romance", "libelle": "La romance qui fait mouiller les yeux",
-             "points": {"chanson_fr": 2, "rnb": 2, "blues": 1.5}},
-            {"id": "anime", "libelle": "Un dessin animé avec les mômes",
-             "points": {"pop": 1.5, "variete_80s": 1.5, "classique": 1}},
-            {"id": "vieille_comedie", "libelle": "La vieille comédie française",
-             "points": {"variete_80s": 2, "chanson_fr": 1.5}},
-        ],
-    },
-    {
-        "id": "resto",
-        "question": "Au resto, tu commandes ?",
-        "options": [
-            {"id": "classique", "libelle": "Un classique bien fait",
-             "points": {"chanson_fr": 2, "rock_classique": 1, "variete_80s": 1.5}},
-            {"id": "nouveau", "libelle": "On teste le nouveau du moment",
-             "points": {"electro": 1.5, "indie": 2, "pop": 1.5}},
-            {"id": "epice", "libelle": "Épicé, exotique, du monde entier",
-             "points": {"latino": 2.5, "reggae": 1.5, "rap_us": 1}},
-            {"id": "dessert", "libelle": "Surtout le dessert",
-             "points": {"lofi": 2, "classique": 1.5, "jazz": 1}},
-            {"id": "pizzeria", "libelle": "La pizzeria du coin",
-             "points": {"pop": 1.5, "indie": 1, "electro": 1}},
-            {"id": "grec", "libelle": "Le grec du soir, en rentrant",
-             "points": {"rap_fr": 1.5, "techno": 1, "electro": 1}},
-        ],
-    },
-    {
-        "id": "activite",
-        "question": "Le sport et le corps, tu en fais ?",
-        "options": [
-            {"id": "pas_sport", "libelle": "Pas trop ton truc",
-             "points": {"lofi": 2, "jazz": 1.5, "classique": 1.5}},
-            {"id": "equipe", "libelle": "Les sports d'équipe, l'ambiance",
-             "points": {"funk": 2, "rap_fr": 1.5, "latino": 1.5}},
-            {"id": "seul", "libelle": "Courir seul, la gym tranquille",
-             "points": {"electro": 2, "indie": 2, "lofi": 1}},
-            {"id": "sensations", "libelle": "La vitesse et les sensations : ski, moto, caisses",
-             "points": {"metal": 2, "rap_us": 2, "electro": 1.5}},
-            {"id": "petanque", "libelle": "La pétanque et les jeux du café du coin",
-             "points": {"chanson_fr": 1.5, "jazz": 1, "funk": 1, "blues": 1}},
-            {"id": "peche", "libelle": "La pêche, la nature tranquille",
-             "points": {"lofi": 2, "reggae": 1, "classique": 1}},
-        ],
-    },
-    {
         "id": "machines",
         "question": "Gadgets, machines, applis — le max ou le minimum ?",
         "options": [
@@ -164,8 +93,7 @@ QUESTIONS = [
              "points": {"lofi": 2, "jazz": 1.5, "classique": 1}},
             {"id": "démonte", "libelle": "Je démonte tout pour comprendre",
              "points": {"techno": 1.5, "electro": 1.5, "metal": 1}},
-            {"id": "equilibre", "libelle": "Duo : mes applis et ma radio"
-             "",
+            {"id": "equilibre", "libelle": "Duo : mes applis et ma radio",
              "points": {"pop": 1.5, "chanson_fr": 1, "lofi": 1}},
         ],
     },
@@ -237,8 +165,71 @@ QUESTIONS = [
              "points": {"electro": 2, "techno": 1.5, "cinema": 1.5, "lofi": 1.5}},
             {"id": "apero", "libelle": "L'apéro, l'avant-soirée",
              "points": {"funk": 1.5, "latino": 1.5, "electro": 1}},
-            {"id": "tome_tôt", "libelle": "Tôt le matin, avant tout le monde",
+            {"id": "tot_le_matin", "libelle": "Tôt le matin, avant tout le monde",
              "points": {"lofi": 2, "classique": 1.5, "cinema": 1}},
+        ],
+    },
+    # ===== 5 questions MUSICALES =====
+    {
+        "id": "instrument",
+        "question": "L'instrument que tu aurais aimé savoir jouer ?",
+        "options": [
+            {"id": "guitare", "libelle": "La guitare",
+             "points": {"rock_classique": 2, "punk": 2, "indie": 1}},
+            {"id": "piano", "libelle": "Le piano",
+             "points": {"jazz": 2, "classique": 2, "chanson_fr": 1.5}},
+            {"id": "batterie", "libelle": "La batterie",
+             "points": {"metal": 2, "rock_classique": 1.5, "techno": 1}},
+            {"id": "chant", "libelle": "Aucun, mais chanter tout haut",
+             "points": {"pop": 2, "rnb": 1.5, "chanson_fr": 1.5}},
+            {"id": "temps", "libelle": "Aucun — mais le beat, à la main sur la table",
+             "points": {"rap_fr": 2, "rap_us": 1.5, "electro": 1}},
+        ],
+    },
+    {
+        "id": "volume_prefere",
+        "question": "Le volume parfait pour toi ?",
+        "options": [
+            {"id": "doux", "libelle": "Doux, presque une respiration",
+             "points": {"lofi": 2, "classique": 1.5, "jazz": 1.5}},
+            {"id": "moyen", "libelle": "Moyen, qui accompagne sans écraser",
+             "points": {"pop": 1.5, "chanson_fr": 1.5, "rnb": 1}},
+            {"id": "fort", "libelle": "Fort — ça doit rentrer dedans",
+             "points": {"metal": 2, "rap_fr": 1.5, "electro": 1.5, "techno": 1}},
+            {"id": "variable", "libelle": "Ça dépend des jours",
+             "points": {"jazz": 1, "indie": 1, "reggae": 1}},
+        ],
+    },
+    {
+        "id": "chanter",
+        "question": "Tu chantes, toi ?",
+        "options": [
+            {"id": "douche", "libelle": "Sous la douche, à fond",
+             "points": {"pop": 2, "variete_80s": 2, "chanson_fr": 1}},
+            {"id": "voiture", "libelle": "En voiture, en conduisant",
+             "points": {"rock_classique": 2, "rap_fr": 2, "variete_80s": 1}},
+            {"id": "jamais", "libelle": "Jamais — j'écoute, c'est tout",
+             "points": {"techno": 2, "classique": 1.5, "jazz": 1.5, "lofi": 1}},
+            {"id": "quelque_fois", "libelle": "De temps en temps, dans un moment",
+             "points": {"pop": 1, "chanson_fr": 1, "rnb": 1}},
+        ],
+    },
+    {
+        "id": "son",
+        "question": "Dans un morceau, ce qui t'accroche le plus ?",
+        "options": [
+            {"id": "guitare", "libelle": "La guitare qui déchire",
+             "points": {"rock_classique": 3, "punk": 2, "metal": 2, "indie": 2}},
+            {"id": "piano_voix", "libelle": "Le piano, la mélodie, la voix qui porte",
+             "points": {"chanson_fr": 3, "jazz": 2, "rnb": 2, "classique": 2, "pop": 1}},
+            {"id": "synthé", "libelle": "Les synthés, les sons de machines",
+             "points": {"electro": 3, "techno": 2, "lofi": 2, "variete_80s": 2, "cinema": 1}},
+            {"id": "beat", "libelle": "Le beat qui rentre dedans",
+             "points": {"rap_fr": 3, "rap_us": 3, "rnb": 1, "electro": 1}},
+            {"id": "cuivre", "libelle": "Les cuivres, le groove",
+             "points": {"funk": 3, "jazz": 2, "latino": 2, "blues": 2}},
+            {"id": "cordes", "libelle": "Les violons, l'orchestre",
+             "points": {"classique": 3, "cinema": 2}},
         ],
     },
     {
