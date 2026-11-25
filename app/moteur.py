@@ -33,8 +33,8 @@ def calculer_scores(reponses: dict) -> tuple[dict, dict]:
     return scores, {"apports": apports, "sources": sources}
 
 
-def top_styles(scores: dict, gains: dict | None = None, k: int = 3) -> list[dict]:
-    """Retourne les k meilleurs styles, avec pourcentage relatif au 1er."""
+def top_styles(scores: dict, gains: dict | None = None, k: int = 5) -> list[dict]:
+    """Retourne les k meilleurs styles, ordre décroissant."""
     total = dict(scores)
     for cle, points in (gains or {}).items():
         total[cle] = total.get(cle, 0.0) + points
@@ -48,7 +48,6 @@ def top_styles(scores: dict, gains: dict | None = None, k: int = 3) -> list[dict
             "cle": cle,
             "nom": NOMS.get(cle, cle),
             "points": round(s, 1),
-            "pourcentage": max(20, min(100, round(s / premier * 100))),
         }
         for cle, s in retenus
     ]

@@ -141,4 +141,29 @@ STYLES = {
         "recherche": "lofi chill beats",
         "seeds": [],
     },
+    "folk_country": {
+        "seeds": [
+            ("Bob Dylan", "en", "1970"), ("Johnny Cash", "en", "1970"),
+            ("Simon & Garfunkel", "en", "1970"),
+            ("Creedence Clearwater Revival", "en", "1970"),
+        ],
+    },
+    "kpop": {
+        "seeds": [
+            ("BTS", "en", "2000"), ("BLACKPINK", "en", "2000"),
+            ("NewJeans", "en", "2000"),
+        ],
+    },
+    "afro": {
+        "seeds": [
+            ("Kassav'", "fr", "1980"), ("Magic System", "fr", "1990"),
+            ("Fally Ipupa", "fr", "2000"), ("Angélique Kidjo", "en", "2000"),
+        ],
+    },
+    "musette": {
+        "seeds": [
+            ("Yann Tiersen", "fr", "2000"), ("Jo Privat", "fr", "1970"),
+            ("Caravan Palace", "en", "2000"),
+        ],
+    },
 }

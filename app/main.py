@@ -25,17 +25,6 @@ INSTRUMENTAUX = {"classique", "lofi", "cinema", "techno"}   # échappent à la l
 CLE_STYLES = list(NOMS.keys())
 
 
-def _prepare_et_pistes(reponses: dict, gains: dict, scores: dict, vus: set):
-    """Top styles + les vraies pistes correspondantes (variété garantie)."""
-    styles = top_styles(scores, gains, k=3)
-    langue = reponses.get("langue")
-    eras = decades_autorisees(reponses.get("epoque"))
-    pistes = deezer.titres_pour_styles(styles, langue, eras,
-                                       INSTRUMENTAUX, vus)
-    raisons = raisons_pour(gains, calculer_scores(reponses)[1]["sources"], styles)
-    return styles, pistes, raisons
-
-
 def _gains_artiste(nom_artiste: str, raisons: list) -> tuple[dict, dict | None]:
     """Bonus de style via l'artiste cité (+ ses titres en ancre)."""
     artists = deezer.chercher_artiste(nom_artiste)
@@ -99,11 +88,11 @@ def resultat(reponses: dict = {}):
     raisons = []
     gains, artists = _gains_artiste(nom_artiste, raisons) if nom_artiste else ({}, None)
     scores, _ = calculer_scores(reponses)
-    styles = top_styles(scores, gains, k=3)
+    styles = top_styles(scores, gains, k=5)
     langue = reponses.get("langue")
     eras = decades_autorisees(reponses.get("epoque"))
-    pistes = deezer.titres_pour_styles(
-        styles, langue, eras, INSTRUMENTAUX, vus=set())
+    pistes = (deezer.titres_pour_styles(styles[:3], langue, eras, INSTRUMENTAUX, vus=set(), par_style=4)
+              + deezer.titres_pour_styles(styles[3:5], langue, eras, INSTRUMENTAUX, vus=set(), par_style=2))
     if artists and gains:                     # l'ancre en tête de liste
         cible = next(iter(gains), None)
         ancre = deezer.top_titres(artists["id"], n=2)
@@ -148,11 +137,13 @@ def retour(payload: dict):
     if style:
         scores[style] = scores.get(style, 0.0) + (1.5 if action == "aime" else -2.0)
     db.maj_retours(sid, retours, session["vus"])
-    styles = top_styles(scores, k=3)
-    pistes = deezer.titres_pour_styles(
-        styles, session["reponses"].get("langue"),
-        decades_autorisees(session["reponses"].get("epoque")),
-        INSTRUMENTAUX, vus=set(session["vus"]))
+    styles = top_styles(scores, k=5)
+    pistes = (deezer.titres_pour_styles(styles[:3], session["reponses"].get("langue"),
+              decades_autorisees(session["reponses"].get("epoque")),
+              INSTRUMENTAUX, vus=set(session["vus"]), par_style=4)
+              + deezer.titres_pour_styles(styles[3:5], session["reponses"].get("langue"),
+              decades_autorisees(session["reponses"].get("epoque")),
+              INSTRUMENTAUX, vus=set(session["vus"]), par_style=2))
     nouvelles = [f"{p['artiste']} — {p['titre']}".lower() for p in pistes]
     db.maj_retours(sid, retours, list(set(session["vus"]) | set(nouvelles)))
     return {"styles": styles, "pistes": pistes,

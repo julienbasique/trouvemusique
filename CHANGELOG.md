@@ -4,6 +4,22 @@ Chaque version est une copie complète qui marchait (code + base de sessions).
 Copies dans `~/trouvemusique-versions/` — historique technique : dépôt git ici.
 Nouvelle version : `scripts/nouvelle_version.sh <X.Y> "ce qui change"`.
 
+## v1.9 — 25 novembre 2026 (jeudi soir, encore)
+
+Diversifié et adapté (demande de Julien : « il en existe plein ! ») :
+
+- **Le catalogue passe à 24 styles** : ajout du **Folk & Country** (Dylan,
+  Cash…), de la **K-pop** (BTS, BLACKPINK, NewJeans), de l'**Afro & Zouk**
+  (Kassav', Magic System, Fally Ipupa), de la **Musette & Accordéon**
+  (Tiersen, Caravan Palace — le genre brocante) — branchés sur les
+  réponses (le punch tropical → afro, le téléphone → K-pop, le concert
+  du village → musette…).
+- **L'écran final montre 5 styles** (au lieu de 3) : le n°1 en gros, les
+  4 suivants dessous ; les pistes restent en profondeur sur les 3 gros,
+  allégées sur les 2 suivants.
+- Vérifié sur 3 profils opposés (fête / calme / brocante) : 5 styles
+  adaptés chacun, 16 pistes jouables par profil, aucun doublon.
+
 ## v1.8 — 25 novembre 2026 (jeudi soir)
 
 Répartition demandée : **5 questions sur 15, sur la musique** —
