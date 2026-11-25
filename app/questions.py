@@ -2,7 +2,7 @@
 PAS de questions personnelles (leçon v1.1→v1.2 : « trop perso » interdit —
 pas d'identité, pas de souvenirs intimes, pas d'humeur mentale).
 
-Une option = dico de points (style -> points). L'ancre « artiste » reste.
+15 questions au total (14 à option + l'artiste). Une option = dico de points.
 """
 
 QUESTIONS = [
@@ -46,6 +46,118 @@ QUESTIONS = [
              "points": {"chanson_fr": 2, "funk": 1.5, "variete_80s": 1.5, "latino": 1}},
             {"id": "pas_fete", "libelle": "Pas trop la fête, autre chose ?",
              "points": {"lofi": 2, "blues": 1.5, "classique": 1.5, "cinema": 1}},
+        ],
+    },
+    {
+        "id": "boisson",
+        "question": "Pour discuter et traîner, tu prends quoi à la main ?",
+        "options": [
+            {"id": "cafe", "libelle": "Un café bien serré",
+             "points": {"indie": 2, "jazz": 1.5, "blues": 1}},
+            {"id": "vin", "libelle": "Un verre de vin posé",
+             "points": {"chanson_fr": 2, "classique": 1.5, "variete_80s": 1.5}},
+            {"id": "biere", "libelle": "Une bière bien fraîche",
+             "points": {"rock_classique": 2, "electro": 1.5, "funk": 1.5}},
+            {"id": "doux", "libelle": "Un thé, un sirop, du sucré",
+             "points": {"lofi": 2, "classique": 1.5, "pop": 1}},
+        ],
+    },
+    {
+        "id": "transport",
+        "question": "Au quotidien, ta façon de te déplacer ?",
+        "options": [
+            {"id": "pied_velo", "libelle": "À pied ou à vélo",
+             "points": {"indie": 2, "lofi": 1.5, "reggae": 1.5}},
+            {"id": "fenetre", "libelle": "En voiture, la fenêtre ouverte",
+             "points": {"rock_classique": 2, "electro": 1.5, "rap_fr": 1.5}},
+            {"id": "train", "libelle": "En train, on observe",
+             "points": {"classique": 2, "jazz": 1.5, "cinema": 1.5, "lofi": 1}},
+            {"id": "deux_roues", "libelle": "Le deux-roues, moteur ou pédales",
+             "points": {"rap_fr": 1.5, "metal": 1.5, "electro": 1.5}},
+        ],
+    },
+    {
+        "id": "film",
+        "question": "Le film ou la série qui t'attire ce soir ?",
+        "options": [
+            {"id": "comedie", "libelle": "La comédie qui déconne",
+             "points": {"pop": 2, "funk": 1.5, "rap_fr": 1}},
+            {"id": "thriller", "libelle": "Le thriller qui tient éveillé",
+             "points": {"techno": 2, "cinema": 2, "metal": 1}},
+            {"id": "docu", "libelle": "Le documentaire qui apprend des choses",
+             "points": {"indie": 2, "jazz": 1.5, "classique": 1}},
+            {"id": "romance", "libelle": "La romance qui fait mouiller les yeux",
+             "points": {"chanson_fr": 2, "rnb": 2, "blues": 1.5}},
+        ],
+    },
+    {
+        "id": "resto",
+        "question": "Au resto, tu commandes ?",
+        "options": [
+            {"id": "classique", "libelle": "Un classique bien fait",
+             "points": {"chanson_fr": 2, "rock_classique": 1, "variete_80s": 1.5}},
+            {"id": "nouveau", "libelle": "On teste le nouveau du moment",
+             "points": {"electro": 1.5, "indie": 2, "pop": 1.5}},
+            {"id": "epice", "libelle": "Épicé, exotique, du monde entier",
+             "points": {"latino": 2.5, "reggae": 1.5, "rap_us": 1}},
+            {"id": "dessert", "libelle": "Surtout le dessert",
+             "points": {"lofi": 2, "classique": 1.5, "jazz": 1}},
+        ],
+    },
+    {
+        "id": "activite",
+        "question": "Le sport et le corps, tu en fais ?",
+        "options": [
+            {"id": "pas_sport", "libelle": "Pas trop ton truc",
+             "points": {"lofi": 2, "jazz": 1.5, "classique": 1.5}},
+            {"id": "equipe", "libelle": "Les sports d'équipe, l'ambiance",
+             "points": {"funk": 2, "rap_fr": 1.5, "latino": 1.5}},
+            {"id": "seul", "libelle": "Courir seul, la gym tranquille",
+             "points": {"electro": 2, "indie": 2, "lofi": 1}},
+            {"id": "sensations", "libelle": "La vitesse et les sensations : ski, moto, caisses",
+             "points": {"metal": 2, "rap_us": 2, "electro": 1.5}},
+        ],
+    },
+    {
+        "id": "machines",
+        "question": "Gadgets, machines, applis — le max ou le minimum ?",
+        "options": [
+            {"id": "connecte", "libelle": "Tout connecté, tout au point",
+             "points": {"techno": 2, "electro": 2, "indie": 1}},
+            {"id": "sobre", "libelle": "Sobre : l'essentiel, pas de bazar",
+             "points": {"classique": 2, "chanson_fr": 1.5, "lofi": 1.5}},
+            {"id": "ancien", "libelle": "De vieux objets qu'on répare",
+             "points": {"rock_classique": 2, "variete_80s": 1.5, "blues": 1.5}},
+            {"id": "minimal", "libelle": "Le minimum vital",
+             "points": {"lofi": 2, "jazz": 1.5, "classique": 1}},
+        ],
+    },
+    {
+        "id": "concert",
+        "question": "Un concert idéal pour entendre ça en vrai ?",
+        "options": [
+            {"id": "petite_salle", "libelle": "Une petite salle, tout près de la scène",
+             "points": {"indie": 2, "blues": 1.5, "jazz": 1.5, "rap_fr": 1}},
+            {"id": "festival", "libelle": "Un festival, la grande scène, le monde",
+             "points": {"electro": 2, "rap_fr": 1.5, "rock_classique": 1.5}},
+            {"id": "feu", "libelle": "Autour d'un feu, guitare à la main",
+             "points": {"chanson_fr": 2, "reggae": 1.5, "variete_80s": 1}},
+            {"id": "pas_fan", "libelle": "Pas fan des concerts",
+             "points": {"lofi": 2, "classique": 1.5, "cinema": 1}},
+        ],
+    },
+    {
+        "id": "avec_qui",
+        "question": "Tu mets ta musique plutôt avec qui autour ?",
+        "options": [
+            {"id": "casque", "libelle": "Tout seul, le casque sur les oreilles",
+             "points": {"lofi": 2, "indie": 2, "classique": 1.5, "jazz": 1}},
+            {"id": "famille", "libelle": "En famille, dans la cuisine",
+             "points": {"variete_80s": 2, "chanson_fr": 1.5, "pop": 1}},
+            {"id": "potes", "libelle": "Entre potes, autour d'une table",
+             "points": {"funk": 2, "rap_fr": 1.5, "rap_us": 1.5, "latino": 1}},
+            {"id": "bars", "libelle": "Dans les bars, les boîtes, les événements",
+             "points": {"electro": 2, "techno": 1.5, "latino": 1.5}},
         ],
     },
     {

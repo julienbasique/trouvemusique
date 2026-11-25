@@ -16,29 +16,33 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   min-height: 100vh;
 }
-.header { padding: 26px 20px 6px; text-align: center; }
-.wordmark { font-size: 26px; font-weight: 700; letter-spacing: .5px; }
-.tag { display: block; font-size: 12.5px; color: var(--accent-fort); margin-top: 4px; }
-.page { max-width: 720px; margin: 0 auto; padding: 14px 16px 60px; }
+.header { padding: 36px 20px 8px; text-align: center; }
+.wordmark { font-size: 30px; font-weight: 700; letter-spacing: .5px; }
+.tag { display: block; font-size: 13.5px; color: var(--accent-fort); margin-top: 6px; }
+.page { max-width: 960px; margin: 0 auto; padding: 18px 22px 70px; }
 
 .card {
   background: var(--carte); border: 1px solid var(--bord);
-  border-radius: 16px; padding: 22px; margin-top: 16px;
+  border-radius: 18px; padding: 30px; margin-top: 24px;
 }
 .hidden { display: none !important; }
-.progress { height: 6px; background: var(--bord); border-radius: 4px; overflow: hidden; }
+.progress { height: 8px; background: var(--bord); border-radius: 5px; overflow: hidden; }
 #progress-barre { height: 100%; width: 0; background: var(--accent); transition: width .3s; }
-.compteur { font-size: 12px; color: var(--texte2); margin: 10px 0 2px; }
-#question-libelle { font-size: 21px; margin: 6px 0 18px; }
+.compteur { font-size: 13px; color: var(--texte2); margin: 14px 0 4px; }
+#question-libelle { font-size: 24px; margin: 8px 0 24px; line-height: 1.25; }
 
+#options {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px;
+}
 .option {
   display: block; width: 100%; text-align: left; cursor: pointer;
   background: #241f38; color: var(--texte);
-  border: 1px solid var(--bord); border-radius: 12px;
-  padding: 14px 16px; margin-bottom: 10px; font-size: 16px;
-  transition: border-color .15s, transform .05s;
+  border: 1px solid var(--bord); border-radius: 14px;
+  padding: 18px 18px; min-height: 62px; margin-bottom: 0; font-size: 16.5px;
+  line-height: 1.35; display: flex; align-items: center;
+  transition: border-color .15s, transform .05s, background .15s;
 }
-.option:hover { border-color: var(--accent); }
+.option:hover { border-color: var(--accent); background: #2a2440; }
 .option:active { transform: scale(.985); }
 .texte {
   width: 100%; padding: 13px 14px; background: #241f38; color: var(--texte);
@@ -61,9 +65,9 @@ body {
 #note-raffinage { color: var(--accent-fort); font-size: 13px; }
 
 .piste {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 14px;
   background: var(--carte); border: 1px solid var(--bord);
-  border-radius: 12px; padding: 9px 10px; margin-bottom: 8px;
+  border-radius: 14px; padding: 13px 14px; margin-bottom: 12px;
 }
 .piste:hover { border-color: var(--accent); }
 .play {
@@ -71,7 +75,7 @@ body {
   background: var(--accent); color: var(--accent-texte); font-size: 15px; flex-shrink: 0;
 }
 .play:hover { background: var(--accent-fort); }
-.pochette { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; background: var(--bord); }
+.pochette { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; background: var(--bord); }
 .piste-info { flex: 1; min-width: 0; }
 .piste-titre { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .piste-artiste { font-size: 12.5px; color: var(--texte2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -96,7 +100,9 @@ body {
 .lien-bas:hover { color: var(--texte); }
 
 .footer { text-align: center; color: var(--texte2); font-size: 12px; padding: 20px; }
-@media (max-width: 560px) {
+@media (max-width: 680px) {
+  #options { grid-template-columns: 1fr; }
   .piste-style, .piste-lien { display: none; }
-  .wordmark { font-size: 21px; }
+  .wordmark { font-size: 22px; }
+  .page { padding: 12px 14px 50px; }
 }

@@ -4,6 +4,19 @@ Chaque version est une copie complète qui marchait (code + base de sessions).
 Copies dans `~/trouvemusique-versions/` — historique technique : dépôt git ici.
 Nouvelle version : `scripts/nouvelle_version.sh <X.Y> "ce qui change"`.
 
+## v1.3 — 25 novembre 2026 (soir, encore)
+
+Taille et aération (demande de Julien) :
+
+- **15 questions** : les 6 de vie + 8 nouvelles, toutes légères (la boisson
+  pour traîner, le transport, le film du soir, le resto, le sport, les
+  gadgets, le concert idéal, avec qui écouter — le tout sans intrusif).
+- **Le site s'élargit et respire** : page passée de 720 à 960 px, options
+  en 2 colonnes plus larges, pochettes plus grosses, espaces entre les
+  pistes, titre de question plus grand. Toujours organisé — testé en réel :
+  profil « festival + bière + nuit » → Électro, Rap français, Latino,
+  12 pistes toutes jouables, aucun doublon.
+
 ## v1.2 — 25 novembre 2026 (soir)
 
 Retour de Julien : v1.1 allait « trop perso ». Le quiz repart du bon côté :
