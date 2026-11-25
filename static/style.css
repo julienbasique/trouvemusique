@@ -68,6 +68,15 @@ body {
 }
 .style-xl { font-size: 34px; font-weight: 800; color: var(--accent-fort); line-height: 1.15; }
 .style-l { font-size: 19px; font-weight: 600; color: var(--texte); margin-top: 12px; }
+.bloc { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.react-style { display: flex; gap: 6px; }
+.style-retour {
+  border: 1px solid var(--bord); background: transparent; color: var(--texte2);
+  border-radius: 8px; padding: 4px 9px; font-size: 11.5px; cursor: pointer;
+}
+.style-retour.oui:hover { border-color: var(--vert); color: var(--vert); }
+.style-retour.non:hover { border-color: var(--rouge); color: var(--rouge); }
+.style-retour:disabled { opacity: .4; cursor: default; }
 .pistes-case {
   background: var(--carte); border: 1px solid var(--bord);
   border-radius: 18px; padding: 22px;

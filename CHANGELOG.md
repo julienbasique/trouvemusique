@@ -4,6 +4,20 @@ Chaque version est une copie complète qui marchait (code + base de sessions).
 Copies dans `~/trouvemusique-versions/` — historique technique : dépôt git ici.
 Nouvelle version : `scripts/nouvelle_version.sh <X.Y> "ce qui change"`.
 
+## v2.2 — 25 novembre 2026 (vendredi)
+
+Correspondance des styles (retour : « ça ne correspond pas à 100 % ») :
+
+- **Classement par signal fort** : le style touché par une GROSSE réponse
+  (« guitare », « beat ») monte plus vite que les styles arrosés de
+  petites touches — la tête d'affiche reflète ce que tu as dit le plus
+  fort. Testé : guitare + sous tension → Rock, Métal, Punk en tête.
+- **Bouton de correction sous chaque style** : « c'est moi » / « pas du
+  tout » — un clic, le classement se réajuste immédiatement (et les
+  pistes suivent). Poids fort : +2,5 / -3,5.
+- **Cumul honnête** : chaque retour est mémorisé — avant, le deuxième
+  repartait des scores d'origine (les précédents étaient perdus).
+
 ## v2.1 — 25 novembre 2026 (vendredi)
 
 L'application devient interactive et fluide (demande de Julien) :

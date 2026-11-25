@@ -69,3 +69,12 @@ def maj_retours(sid: str, retours: list, vus: list) -> None:
             (json.dumps(retours, ensure_ascii=False),
              json.dumps(vus, ensure_ascii=False), sid),
         )
+
+
+def maj_scores(sid: str, scores: dict) -> None:
+    """Persiste les scores ajustés (cumul des retours j'aime/j'aime pas)."""
+    with _connexion() as con:
+        con.execute(
+            "UPDATE sessions SET scores = ? WHERE id = ?",
+            (json.dumps(scores, ensure_ascii=False), sid),
+        )

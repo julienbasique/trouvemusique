@@ -33,14 +33,23 @@ def calculer_scores(reponses: dict) -> tuple[dict, dict]:
     return scores, {"apports": apports, "sources": sources}
 
 
-def top_styles(scores: dict, gains: dict | None = None, k: int = 5) -> list[dict]:
-    """Retourne les k meilleurs styles, ordre décroissant."""
+def top_styles(scores: dict, gains: dict | None = None, k: int = 5,
+               apports: dict | None = None) -> list[dict]:
+    """Meilleurs styles, ordre décroissant.
+
+    Classement biaisé vers le SIGNAL FORT : un style touché par une grosse
+    réponse unique (apports) monte plus vite qu'unstyle arrosé de petites
+    touches — c'est ce qui rend la proposition lisible et vérifiable
+    (« j'ai répondu guitare + rock, j'ai du rock en tête »).
+    """
     total = dict(scores)
     for cle, points in (gains or {}).items():
         total[cle] = total.get(cle, 0.0) + points
-    tries = sorted(total.items(), key=lambda x: -x[1])
+    app = apports or {}
+    ajuste = {cle: v + 0.8 * app.get(cle, 0.0) for cle, v in total.items()}
+    tries = sorted(ajuste.items(), key=lambda x: -x[1])
     retenus = [(cle, s) for cle, s in tries[:k] if s > 0.5]
-    if not retenus:                      # aucune affinité forte : on ouvre 3 mondes
+    if not retenus:                      # aucune affinité forte : 3 mondes
         retenus = [("electro", 1.0), ("rap_fr", 1.0), ("lofi", 1.0)]
     premier = retenus[0][1] or 1.0
     return [

@@ -88,10 +88,17 @@ async function terminer() {
 
 function renderStyles(d) {
   const liste = d.styles || [];
-  $("styles-gros").innerHTML = liste.map((s, i) =>
-    i === 0
-      ? `<div class="style-xl">${s.nom}</div>`
-      : `<div class="style-l">${s.nom}</div>`).join("");
+  $("styles-gros").innerHTML = liste.map((s, i) => {
+    const retour = session_id
+      ? `<span class="react-style">
+           <button class="style-retour oui" data-style="${s.cle}" data-action="aime">c'est moi</button>
+           <button class="style-retour non" data-style="${s.cle}" data-action="pas">pas du tout</button>
+         </span>`
+      : "";
+    return i === 0
+      ? `<div class="style-xl bloc">${s.nom}${retour}</div>`
+      : `<div class="style-l bloc">${s.nom}${retour}</div>`;
+  }).join("");
   $("raisons").innerHTML = (d.raisons || []).map((r) =>
     `<li>${r}</li>`).join("");
   $("raisons").classList.toggle("hidden", !(d.raisons || []).length);
@@ -191,6 +198,26 @@ document.addEventListener("click", async (e) => {
     play.textContent = "❚❚";
     play.classList.add("pause");
     play.closest(".piste").classList.add("joue");
+    return;
+  }
+  const retour_style = e.target.closest(".style-retour");
+  if (retour_style && session_id) {
+    retour_style.disabled = true;
+    const r = await fetch("/api/retour", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id,
+        style_cle: retour_style.dataset.style,
+        action: retour_style.dataset.action,
+      }),
+    });
+    const d = await r.json();
+    renderStyles(d);
+    renderPistes(d.pistes || []);
+    toast(retour_style.dataset.action === "aime"
+      ? "noté exact — on pousse plus fort vers ça"
+      : "noté pas du tout — on décante ailleurs");
     return;
   }
   const retour = e.target.closest(".retour");

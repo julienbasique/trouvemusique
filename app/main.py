@@ -94,8 +94,8 @@ def resultat(reponses: dict = {}):
     nom_artiste = (reponses.get("artiste") or "").strip()
     raisons = []
     gains, artists = _gains_artiste(nom_artiste, raisons) if nom_artiste else ({}, None)
-    scores, _ = calculer_scores(reponses)
-    styles = top_styles(scores, gains, k=5)
+    scores, meta = calculer_scores(reponses)
+    styles = top_styles(scores, gains, k=5, apports=meta["apports"])
     langue = reponses.get("langue")
     eras = decades_autorisees(reponses.get("epoque"))
     pistes = (deezer.titres_pour_styles(styles[:3], langue, eras, INSTRUMENTAUX, vus=set(), par_style=4)
@@ -130,21 +130,30 @@ def resultat(reponses: dict = {}):
 
 @app.post("/api/retour")
 def retour(payload: dict):
-    """j'aime / j'aime pas sur des titres -> recommandations RÉAJUSTÉES."""
+    """Retours : sur un TITRE (j'aime/j'aime pas) ou sur un STYLE
+    (« c'est moi » / « pas du tout ») -> recommandations RÉAJUSTÉES."""
     sid = payload.get("session_id")
     artiste = payload.get("artiste")
     action = payload.get("action")          # "aime" | "pas"
     style = payload.get("style_cle")
     session = db.lire(sid)
-    if not session or not artiste or action not in ("aime", "pas"):
+    if not session or not action in ("aime", "pas") or not (artiste or style):
         raise HTTPException(400, "retour incomplet")
     retours = session["retours"] + [{"artiste": artiste, "action": action,
                                      "titre": payload.get("titre", "")}]
     scores = dict(session["scores"])
     if style:
-        scores[style] = scores.get(style, 0.0) + (1.5 if action == "aime" else -2.0)
-    db.maj_retours(sid, retours, session["vus"])
-    styles = top_styles(scores, k=5)
+        # retour sur un STYLE : pondération plus forte que sur un titre
+        poids = 2.5 if action == "aime" else -3.5
+        if artiste:
+            poids = 1.5 if action == "aime" else -2.0
+        scores[style] = scores.get(style, 0.0) + poids
+    retours_a_sauver = retours if artiste else [{"style": style, "action": action}]
+    if artiste:
+        db.maj_retours(sid, retours, session["vus"])
+    db.maj_scores(sid, scores)          # cumul honnête entre plusieurs retours
+    _, meta = calculer_scores(session["reponses"])
+    styles = top_styles(scores, k=5, apports=meta["apports"])
     pistes = (deezer.titres_pour_styles(styles[:3], session["reponses"].get("langue"),
               decades_autorisees(session["reponses"].get("epoque")),
               INSTRUMENTAUX, vus=set(session["vus"]), par_style=4)
