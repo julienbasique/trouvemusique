@@ -160,6 +160,19 @@ def retour(payload: dict):
               + deezer.titres_pour_styles(styles[3:5], session["reponses"].get("langue"),
               decades_autorisees(session["reponses"].get("epoque")),
               INSTRUMENTAUX, vus=set(session["vus"]), par_style=2))
+    # J'AIME → des SIMILAIRES apparaissent en face (même album / même artiste)
+    similaires = []
+    if action == "aime" and artiste:
+        cle_aimee = (artiste + " — " + payload.get("titre", "")).lower()
+        similaires = deezer.similaires_de(
+            payload.get("artiste_id"), payload.get("album_id"),
+            vus=set(session["vus"]) | {cle_aimee}, limite=4)
+        for p in similaires:
+            p.setdefault("style_cle", style or "")
+            p.setdefault("style_nom", "")
+        posee = next((i for i, p in enumerate(pistes)
+                      if (p["artiste"] + " — " + p["titre"]).lower() == cle_aimee), 0)
+        pistes = pistes[:posee + 1] + similaires + pistes[posee + 1:]
     nouvelles = [f"{p['artiste']} — {p['titre']}".lower() for p in pistes]
     db.maj_retours(sid, retours, list(set(session["vus"]) | set(nouvelles)))
     return {"styles": styles, "pistes": pistes,

@@ -118,19 +118,22 @@ function renderPistes(pistes) {
   $("pistes").innerHTML = pistes.map((p, i) => {
     const cle = p.artiste + " — " + p.titre;
     const joue_now = en_cours && cle === en_cours;
+    const semailler = p.origine
+      ? `<span class="chip-origine">↳ ${p.origine}</span>`
+      : "";
     return `
-    <div class="piste entree${joue_now ? " joue" : ""}" style="animation-delay:${Math.min(i * 45, 450)}ms">
+    <div class="piste entree${joue_now ? " joue" : ""}${p.origine ? " similaire" : ""}" style="animation-delay:${Math.min(i * 45, 450)}ms">
       <button class="play${joue_now ? " pause" : ""}" data-preview="${p.preview}" data-cle="${cle}" aria-label="écouter 30 s">${joue_now ? "❚❚" : "▶"}</button>
       <img class="pochette" src="${p.image}" loading="lazy" alt="">
       <div class="piste-info">
         <div class="piste-titre">${p.titre}</div>
-        <div class="piste-artiste">${p.artiste} — ${p.album}</div>
+        <div class="piste-artiste">${p.artiste} — ${p.album} ${semailler}</div>
         <div class="barre-preview${joue_now ? "" : " off"}"><span style="width:${joue_now ? barre_pct() : 0}%"></span></div>
       </div>
       <span class="piste-style">${p.style_nom || ""}</span>
       <a class="piste-lien" href="${p.lien}" target="_blank" rel="noopener">entier ↗</a>
-      <button class="retour aime" data-artiste="${p.artiste}" data-titre="${p.titre}" data-style="${p.style_cle}">👍</button>
-      <button class="retour pas" data-artiste="${p.artiste}" data-titre="${p.titre}" data-style="${p.style_cle}">👎</button>
+      <button class="retour aime" data-artiste="${p.artiste}" data-artiste-id="${p.artiste_id || ""}" data-album-id="${p.album_id || ""}" data-titre="${p.titre}" data-style="${p.style_cle}">👍</button>
+      <button class="retour pas" data-artiste="${p.artiste}" data-artiste-id="${p.artiste_id || ""}" data-album-id="${p.album_id || ""}" data-titre="${p.titre}" data-style="${p.style_cle}">👎</button>
     </div>`;
   }).join("");
 }
@@ -229,6 +232,8 @@ document.addEventListener("click", async (e) => {
       body: JSON.stringify({
         session_id,
         artiste: retour.dataset.artiste,
+        artiste_id: retour.dataset.artisteId || "",
+        album_id: retour.dataset.albumId || "",
         titre: retour.dataset.titre,
         style_cle: retour.dataset.style,
         action: retour.classList.contains("aime") ? "aime" : "pas",

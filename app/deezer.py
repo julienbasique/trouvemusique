@@ -74,12 +74,82 @@ def top_titres(artiste_id, n: int = 3) -> list[dict]:
         pistes.append({
             "titre": t["title"],
             "artiste": t["artist"]["name"],
+            "artiste_id": t["artist"]["id"],
             "album": t["album"]["title"],
+            "album_id": t["album"]["id"],
             "preview": t["preview"],
             "lien": t.get("link", ""),
             "image": t.get("album", {}).get("cover_medium", ""),
         })
     return _cache_set(f"top:{artiste_id}:{n}", pistes)
+
+
+def _piste_de_track(t: dict, album_titre: str = None, album_image: str = None,
+                    origine: str = None) -> dict:
+    piste = {
+        "titre": t["title"],
+        "artiste": t["artist"]["name"],
+        "artiste_id": t["artist"]["id"],
+        "album": album_titre or (t.get("album", {}) or {}).get("title", ""),
+        "album_id": album_titre and (t.get("album", {}) or {}).get("id") or (t.get("album", {}) or {}).get("id", ""),
+        "preview": t["preview"],
+        "lien": t.get("link", ""),
+        "image": album_image or (t.get("album", {}) or {}).get("cover_medium", ""),
+    }
+    if origine:
+        piste["origine"] = origine
+    return piste
+
+
+def similaires_de(artiste_id, album_id, vus: set, limite: int = 4) -> list[dict]:
+    """Similaires D'UN AIME : 2 du même album + 2 d'ici, du même artiste.
+
+    Sources Deezer : /album/{id}/tracks (le même disque = le même son) et
+    /artist/{id}/top (ses autres tubes). Étiquetés « même album / même
+    artiste » pour montrer POURQUOI ils ressemblent.
+    """
+    rendus = []
+    vues_cles = vus | set()
+    # 1. le même album
+    album_titre, album_image = "", ""
+    if album_id:
+        try:
+            r = requests.get(f"{BASE}/album/{album_id}", timeout=8)
+            album_titre = r.json().get("title", "")
+            album_image = r.json().get("cover_medium", "")
+        except Exception:
+            pass
+        try:
+            r = requests.get(f"{BASE}/album/{album_id}/tracks", timeout=8)
+            album_data = r.json().get("data") or []
+        except Exception:
+            album_data = []
+        for t in album_data:
+            if len(rendus) >= limite:
+                break
+            if not t.get("preview"):
+                continue
+            piste = _piste_de_track(t, album_titre=album_titre,
+                                    album_image=album_image,
+                                    origine="même album")
+            cle = (piste["artiste"] + " — " + piste["titre"]).lower()
+            if cle in vues_cles:
+                continue
+            vues_cles.add(cle)
+            rendus.append(piste)
+    # 2. le même artiste (ses autres tubes)
+    if artiste_id:
+        for piste in top_titres(artiste_id, n=10):
+            if len(rendus) >= limite + 2:
+                break
+            cle = (piste["artiste"] + " — " + piste["titre"]).lower()
+            if cle in vues_cles:
+                continue
+            enrichi = dict(piste)
+            enrichi["origine"] = "même artiste"
+            rendus.append(enrichi)
+    random.shuffle(rendus)
+    return rendus[:limite]
 
 
 def recherche_directe(requete: str, n: int = 4) -> list[dict]:

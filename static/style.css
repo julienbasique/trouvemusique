@@ -153,6 +153,12 @@ body {
 }
 .points-anim span:nth-child(2) { animation-delay: .15s; }
 .points-anim span:nth-child(3) { animation-delay: .3s; }
+.piste.similaire { border-style: dashed; }
+.chip-origine {
+  display: inline-block; font-size: 10.5px; color: var(--accent-fort);
+  border: 1px dashed var(--accent); border-radius: 6px;
+  padding: 1px 6px; margin-left: 6px; white-space: nowrap;
+}
 .barre-preview {
   position: relative; max-width: 190px; height: 4px;
   background: var(--bord); border-radius: 3px; overflow: hidden; margin-top: 6px;
