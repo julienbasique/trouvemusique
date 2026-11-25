@@ -4,6 +4,20 @@ Chaque version est une copie complète qui marchait (code + base de sessions).
 Copies dans `~/trouvemusique-versions/` — historique technique : dépôt git ici.
 Nouvelle version : `scripts/nouvelle_version.sh <X.Y> "ce qui change"`.
 
+## v2.0 — 25 novembre 2026 (jeudi soir, toujours)
+
+**Prêt pour le nuage** (« faire tourner sans ton PC ») :
+
+- La même app, déployable gratuitement chez Render (plan offert, pas de
+  carte) juste en connectant le dépôt GitHub : fichier render.yaml qui
+  dit à l'hébergeur quoi construire, port lu automatiquement, données
+  sessions incluses.
+- L'IA qui classe un artiste inconnu est désactivable par variable
+  (IA_ARTISTE=0 chez l'hébergeur — pas d'Ollama à disposition) : le repli
+  existe déjà, l'app marche pareil, juste sans cette aide.
+- Ton PC reste la version locale (icône de bureau) ; BrocScan lui est
+  indispensable sur le PC d'une autre façon (modèles + Chrome + données).
+
 ## v1.9 — 25 novembre 2026 (jeudi soir, encore)
 
 Diversifié et adapté (demande de Julien : « il en existe plein ! ») :

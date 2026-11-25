@@ -1,0 +1,12 @@
+# Hébergement gratuit Render : connecte le dépôt GitHub à Render et il
+# déploie TrouveTaMusique tout seul. Le PC n'est plus nécessaire.
+services:
+  - type: web
+    name: trouvemusique
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: IA_ARTISTE
+        value: "0"      # pas d'Ollama sur l'hébergeur : repli sans IA (déjà prévu)

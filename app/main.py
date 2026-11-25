@@ -7,6 +7,9 @@ Routes :
     GET  /                l'interface
 """
 
+import random
+import os
+
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -18,11 +21,15 @@ from .moteur import (calculer_scores, decades_autorisees, raisons_pour,
                      top_styles)
 
 BASE = Path(__file__).resolve().parent.parent
-app = FastAPI(title="TrouveTaMusique", version="1.0.0")
+app = FastAPI(title="TrouveTaMusique", version="2.0.0")
 db.init_db()
 
 INSTRUMENTAUX = {"classique", "lofi", "cinema", "techno"}   # échappent à la langue
 CLE_STYLES = list(NOMS.keys())
+
+# Sur un hébergement nuage (Render…) le serveur Ollama local n'existe pas :
+# IA_ARTISTE=0 coupe le classement IA d'artistes (repli : leurs titres seuls).
+IA_ARTISTE = os.environ.get("IA_ARTISTE", "1") not in ("0", "false", "non")
 
 
 def _gains_artiste(nom_artiste: str, raisons: list) -> tuple[dict, dict | None]:
@@ -40,7 +47,7 @@ def _gains_artiste(nom_artiste: str, raisons: list) -> tuple[dict, dict | None]:
                 break
         if cible:
             break
-    if not cible:
+    if not cible and IA_ARTISTE:
         cible = deezer.genre_depuis_nom(nom_propre, CLE_STYLES)
     gains = {}
     if cible:
