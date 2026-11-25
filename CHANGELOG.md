@@ -4,6 +4,24 @@ Chaque version est une copie complète qui marchait (code + base de sessions).
 Copies dans `~/trouvemusique-versions/` — historique technique : dépôt git ici.
 Nouvelle version : `scripts/nouvelle_version.sh <X.Y> "ce qui change"`.
 
+## v2.4 — 25 novembre 2026 (soir, la fin)
+
+**Quand on like un titre, des similaires apparaissent en face, étiquetés** :
+
+- Un 👍 sur « September » d'Earth, Wind & Fire → tout de suite dessous :
+  « même album » (Fantasy, Boogie Wonderland…) et « même artiste » (Let's
+  Groove…), bordure en tirets jaunes et puce ↳ qui dit pourquoi ça ressemble.
+- Sources : le même disque (mêmes son) puis les autres tubes de l'artiste —
+  piochés via Deezer, hors déjà-vus, mélangés à chaque fois.
+
+## v2.3 — 25 novembre 2026 (jeudi soir, la fin)
+
+Fin du réservoir qui se vide :
+
+- Les pistes sortaient d'un noyau curé (~90 artistes semences) qui
+  s'épuisait après quelques retours → maintenant toute la bibliothèque
+  Deezer complète le remplissage (requête par genre, pioche aléatoire,
+  jamais de déjà-vu). Testé : 8 raffinages = 16 pistes jouables à chaque tour.
 ## v2.2 — 25 novembre 2026 (vendredi)
 
 Correspondance des styles (retour : « ça ne correspond pas à 100 % ») :
