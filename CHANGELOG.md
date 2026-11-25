@@ -4,6 +4,18 @@ Chaque version est une copie complète qui marchait (code + base de sessions).
 Copies dans `~/trouvemusique-versions/` — historique technique : dépôt git ici.
 Nouvelle version : `scripts/nouvelle_version.sh <X.Y> "ce qui change"`.
 
+## v1.8 — 25 novembre 2026 (jeudi soir)
+
+Répartition demandée : **5 questions sur 15, sur la musique** —
+
+- L'instrument que tu aurais joué, le volume parfait, est-ce que tu chantes
+  (+ les 2 existantes : le son qui accroche, la voix) — ce sont les 5
+  questions musicales, placées en fin de quiz.
+- Les 10 autres restent des goûts de vie légers (weekend, endroit, soirée,
+  boisson, gadgets, concert, avec qui, route, moment). Enlevé au passage :
+  le transport, le film, le resto, le sport (qui faisaient doublons).
+- Toujours 6 options par question (5 sur le volume), l'artiste à la fin.
+
 ## v1.6 — 25 novembre 2026 (soir, encore)
 
 - **Plus de choix partout** : chaque question passe à 6 options (la mer
