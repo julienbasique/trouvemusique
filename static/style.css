@@ -1,0 +1,102 @@
+:root {
+  --bg: #14121f;
+  --carte: #1d1a2b;
+  --texte: #ece9ff;
+  --texte2: #a5a0c5;
+  --accent: #8b5cf6;
+  --accent-fort: #a78bfa;
+  --vert: #2ec27e;
+  --rouge: #e05252;
+  --bord: #302b46;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--texte);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+.header { padding: 26px 20px 6px; text-align: center; }
+.wordmark { font-size: 26px; font-weight: 700; letter-spacing: .5px; }
+.tag { display: block; font-size: 12.5px; color: var(--accent-fort); margin-top: 4px; }
+.page { max-width: 720px; margin: 0 auto; padding: 14px 16px 60px; }
+
+.card {
+  background: var(--carte); border: 1px solid var(--bord);
+  border-radius: 16px; padding: 22px; margin-top: 16px;
+}
+.hidden { display: none !important; }
+.progress { height: 6px; background: var(--bord); border-radius: 4px; overflow: hidden; }
+#progress-barre { height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+.compteur { font-size: 12px; color: var(--texte2); margin: 10px 0 2px; }
+#question-libelle { font-size: 21px; margin: 6px 0 18px; }
+
+.option {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  background: #241f38; color: var(--texte);
+  border: 1px solid var(--bord); border-radius: 12px;
+  padding: 14px 16px; margin-bottom: 10px; font-size: 16px;
+  transition: border-color .15s, transform .05s;
+}
+.option:hover { border-color: var(--accent); }
+.option:active { transform: scale(.985); }
+.texte {
+  width: 100%; padding: 13px 14px; background: #241f38; color: var(--texte);
+  border: 1px solid var(--bord); border-radius: 12px; font-size: 16px; margin: 8px 0 14px;
+}
+.primaire {
+  background: var(--accent); color: #fff; border: 0; border-radius: 12px;
+  padding: 13px 20px; font-size: 16px; font-weight: 600; cursor: pointer;
+}
+.primaire:hover { background: var(--accent-fort); }
+
+.styles { display: flex; gap: 12px; flex-wrap: wrap; }
+.style {
+  flex: 1 1 160px; background: var(--carte); border: 1px solid var(--accent);
+  border-radius: 14px; padding: 16px; text-align: center;
+}
+.style-nom { font-size: 17px; font-weight: 700; }
+.style-pct { font-size: 26px; color: var(--accent-fort); font-weight: 800; margin-top: 6px; }
+.style-poids { font-size: 11px; color: var(--texte2); letter-spacing: 2px; text-transform: uppercase; }
+
+.raisons { color: var(--texte2); font-size: 13.5px; margin: 12px 0 0 18px; }
+#note-raffinage { color: var(--accent-fort); font-size: 13px; }
+
+.piste {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--carte); border: 1px solid var(--bord);
+  border-radius: 12px; padding: 9px 10px; margin-bottom: 8px;
+}
+.piste:hover { border-color: var(--accent); }
+.play {
+  width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
+  background: var(--accent); color: #fff; font-size: 15px; flex-shrink: 0;
+}
+.play:hover { background: var(--accent-fort); }
+.pochette { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; background: var(--bord); }
+.piste-info { flex: 1; min-width: 0; }
+.piste-titre { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.piste-artiste { font-size: 12.5px; color: var(--texte2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.piste-style {
+  font-size: 10.5px; color: var(--accent-fort); border: 1px solid var(--bord);
+  border-radius: 6px; padding: 2px 7px; white-space: nowrap;
+}
+.piste-lien { color: var(--texte2); font-size: 12px; white-space: nowrap; }
+.retour {
+  width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--bord);
+  background: transparent; cursor: pointer; font-size: 14px;
+}
+.retour.aime:hover { border-color: var(--vert); background: #10331f; }
+.retour.pas:hover { border-color: var(--rouge); background: #3a1414; }
+.retour:disabled { opacity: .45; cursor: default; }
+
+.lien-bas {
+  display: block; margin: 18px auto 0; background: transparent;
+  color: var(--texte2); border: 0; cursor: pointer; font-size: 14px;
+}
+.lien-bas:hover { color: var(--texte); }
+
+.footer { text-align: center; color: var(--texte2); font-size: 12px; padding: 20px; }
+@media (max-width: 560px) {
+  .piste-style, .piste-lien { display: none; }
+  .wordmark { font-size: 21px; }
+}
