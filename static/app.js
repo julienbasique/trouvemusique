@@ -65,14 +65,21 @@ async function terminer() {
   afficherResultats(d);
 }
 
-function afficherResultats(d) {
-  $("resultats").classList.remove("hidden");
-  $("tag-etape").textContent = "voilà ta musique";
-  $("styles-grille").innerHTML = (d.styles || []).map((s, i) =>
-    `<div class="style${i === 0 ? " top" : ""}">${s.nom}${i === 0 ? " · le plus proche" : ""}</div>`).join("");
+function renderStyles(d) {
+  const liste = d.styles || [];
+  $("styles-gros").innerHTML = liste.map((s, i) =>
+    i === 0
+      ? `<div class="style-xl">${s.nom}</div>`
+      : `<div class="style-l">${s.nom}</div>`).join("");
   $("raisons").innerHTML = (d.raisons || []).map((r) =>
     `<li>${r}</li>`).join("");
   $("raisons").classList.toggle("hidden", !(d.raisons || []).length);
+}
+
+function afficherResultats(d) {
+  $("resultats").classList.remove("hidden");
+  $("tag-etape").textContent = "voilà ta musique";
+  renderStyles(d);
   renderPistes(d.pistes || []);
   $("note-raffinage").textContent = "";
   $("tag-etape").textContent = "écoutem, dis ce qui te parle";
@@ -128,6 +135,7 @@ document.addEventListener("click", async (e) => {
       }),
     });
     const d = await r.json();
+    renderStyles(d);
     renderPistes(d.pistes || []);
     $("note-raffinage").textContent = d.note || "";
   }

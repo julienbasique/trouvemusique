@@ -54,6 +54,25 @@ body {
 }
 .primaire:hover { background: var(--accent-fort); }
 
+.resultat-grille {
+  display: grid; grid-template-columns: minmax(250px, 1fr) 2.2fr;
+  gap: 20px; align-items: start;
+}
+.grosse-gauche {
+  background: var(--carte); border: 1px solid var(--accent);
+  border-radius: 18px; padding: 26px 24px; position: sticky; top: 18px;
+}
+.gros-titre {
+  font-size: 14px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--accent-fort); margin: 0 0 18px;
+}
+.style-xl { font-size: 34px; font-weight: 800; color: var(--accent-fort); line-height: 1.15; }
+.style-l { font-size: 19px; font-weight: 600; color: var(--texte); margin-top: 12px; }
+.pistes-case {
+  background: var(--carte); border: 1px solid var(--bord);
+  border-radius: 18px; padding: 22px;
+}
+
 .styles { display: flex; gap: 10px; flex-wrap: wrap; }
 .style {
   background: var(--carte); border: 1px solid var(--bord);
@@ -102,6 +121,8 @@ body {
 .footer { text-align: center; color: var(--texte2); font-size: 12px; padding: 20px; }
 @media (max-width: 680px) {
   #options { grid-template-columns: 1fr; }
+  .resultat-grille { grid-template-columns: 1fr; }
+  .grosse-gauche { position: static; }
   .piste-style, .piste-lien { display: none; }
   .wordmark { font-size: 22px; }
   .page { padding: 12px 14px 50px; }
