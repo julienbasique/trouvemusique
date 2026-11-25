@@ -68,12 +68,8 @@ async function terminer() {
 function afficherResultats(d) {
   $("resultats").classList.remove("hidden");
   $("tag-etape").textContent = "voilà ta musique";
-  $("styles-grille").innerHTML = (d.styles || []).map((s) =>
-    `<div class="style">
-       <div class="style-nom">${s.nom}</div>
-       <div class="style-pct">${s.pourcentage}%</div>
-       <div class="style-poids">affinité</div>
-     </div>`).join("");
+  $("styles-grille").innerHTML = (d.styles || []).map((s, i) =>
+    `<div class="style${i === 0 ? " top" : ""}">${s.nom}${i === 0 ? " · le plus proche" : ""}</div>`).join("");
   $("raisons").innerHTML = (d.raisons || []).map((r) =>
     `<li>${r}</li>`).join("");
   $("raisons").classList.toggle("hidden", !(d.raisons || []).length);

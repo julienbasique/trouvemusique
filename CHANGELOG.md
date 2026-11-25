@@ -4,6 +4,21 @@ Chaque version est une copie complète qui marchait (code + base de sessions).
 Copies dans `~/trouvemusique-versions/` — historique technique : dépôt git ici.
 Nouvelle version : `scripts/nouvelle_version.sh <X.Y> "ce qui change"`.
 
+## v1.1 — 25 novembre 2026 (fin d'après-midi)
+
+Deux retours de Julien appliqués :
+
+- **Le quiz parle de la PERSONNE d'abord** (« la musique, c'est une façon
+  d'être ») : comment tu te vois, où tu viens, un son d'enfance, le bruit
+  parfait, ton petit moment, ton humeur des derniers jours — la musique se
+  déduit de QUI tu es (2 questions musicales gardées). Mesuré : réponses
+  « tranquille + campagne + radio de la cuisine » → Chanson française,
+  Jazz, Lo-fi (Piaf, Brel, Brassens, Cabrel).
+- **Zéro émoji + plus de dashboard** : les gros pourcentages et les grosses
+  cartes font IA — remplacés par des chips sobres, la 1re marquée
+  « le plus proche ». Et l'accent passe du violet au **jaune** (boutons et
+  touches jaunes sur le fond sombre conservé).
+
 ## v1.0 — 25 novembre 2026
 
 Première version complète, vérifiée en direct :

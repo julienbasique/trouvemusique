@@ -3,8 +3,9 @@
   --carte: #1d1a2b;
   --texte: #ece9ff;
   --texte2: #a5a0c5;
-  --accent: #8b5cf6;
-  --accent-fort: #a78bfa;
+  --accent: #f6c945;
+  --accent-fort: #ffd95e;
+  --accent-texte: #241f38;
   --vert: #2ec27e;
   --rouge: #e05252;
   --bord: #302b46;
@@ -44,19 +45,17 @@ body {
   border: 1px solid var(--bord); border-radius: 12px; font-size: 16px; margin: 8px 0 14px;
 }
 .primaire {
-  background: var(--accent); color: #fff; border: 0; border-radius: 12px;
-  padding: 13px 20px; font-size: 16px; font-weight: 600; cursor: pointer;
+  background: var(--accent); color: var(--accent-texte); border: 0; border-radius: 12px;
+  padding: 13px 20px; font-size: 16px; font-weight: 700; cursor: pointer;
 }
 .primaire:hover { background: var(--accent-fort); }
 
-.styles { display: flex; gap: 12px; flex-wrap: wrap; }
+.styles { display: flex; gap: 10px; flex-wrap: wrap; }
 .style {
-  flex: 1 1 160px; background: var(--carte); border: 1px solid var(--accent);
-  border-radius: 14px; padding: 16px; text-align: center;
+  background: var(--carte); border: 1px solid var(--bord);
+  border-radius: 999px; padding: 9px 18px; font-size: 15.5px; font-weight: 600;
 }
-.style-nom { font-size: 17px; font-weight: 700; }
-.style-pct { font-size: 26px; color: var(--accent-fort); font-weight: 800; margin-top: 6px; }
-.style-poids { font-size: 11px; color: var(--texte2); letter-spacing: 2px; text-transform: uppercase; }
+.style.top { border-color: var(--accent); color: var(--accent-fort); }
 
 .raisons { color: var(--texte2); font-size: 13.5px; margin: 12px 0 0 18px; }
 #note-raffinage { color: var(--accent-fort); font-size: 13px; }
@@ -69,7 +68,7 @@ body {
 .piste:hover { border-color: var(--accent); }
 .play {
   width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
-  background: var(--accent); color: #fff; font-size: 15px; flex-shrink: 0;
+  background: var(--accent); color: var(--accent-texte); font-size: 15px; flex-shrink: 0;
 }
 .play:hover { background: var(--accent-fort); }
 .pochette { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; background: var(--bord); }
@@ -79,6 +78,7 @@ body {
 .piste-style {
   font-size: 10.5px; color: var(--accent-fort); border: 1px solid var(--bord);
   border-radius: 6px; padding: 2px 7px; white-space: nowrap;
+  text-transform: none;
 }
 .piste-lien { color: var(--texte2); font-size: 12px; white-space: nowrap; }
 .retour {
