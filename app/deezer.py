@@ -127,8 +127,9 @@ def deja_vues(piste: dict, vus: set[str]) -> bool:
 
 
 def titres_pour_styles(styles, langue, eras, instrumentaux, vus, par_style=4):
-    """Pistes variées par style : 1 titre par artiste semence, mélangés."""
-    from .genres import STYLES
+    """Pistes variées par style : semences curées D'ABORD, bibliothèque
+    Deezer complète en remplissage (le pool ne se vide plus jamais)."""
+    from .genres import STYLES, DEEZER_QUERIES
     resultats = []
     for s in styles:
         cle = s["cle"]
@@ -159,6 +160,17 @@ def titres_pour_styles(styles, langue, eras, instrumentaux, vus, par_style=4):
                 resultats.append(enrichi)
                 prises += 1
                 break            # 1 titre par artiste : de la variété
+        # REMPLISSAGE : toute la bibliothèque Deezer (recherche par genre)
+        besoin = par_style - prises
+        if besoin > 0:
+            recherche = DEEZER_QUERIES.get(cle)
+            if recherche:
+                for piste in titres_bibliotheque(recherche, vus, besoin):
+                    enrichi = dict(piste)
+                    enrichi["style_cle"] = cle
+                    enrichi["style_nom"] = s["nom"]
+                    resultats.append(enrichi)
+                    prises += 1
         if prises == 0 and config.get("recherche"):
             for piste in recherche_directe(config["recherche"], n=par_style):
                 enrichi = dict(piste)
@@ -166,6 +178,49 @@ def titres_pour_styles(styles, langue, eras, instrumentaux, vus, par_style=4):
                 enrichi["style_nom"] = s["nom"]
                 resultats.append(enrichi)
     return resultats
+
+
+def titres_bibliotheque(recherche: str, vus: set, limite: int) -> list[dict]:
+    """Pioche des titres DANS TOUTE la bibliothèque Deezer (hors semences).
+
+    Un index aléatoire par appel : deux sessions ne sortent jamais les
+    mêmes ; on filtre sur l'existence du preview de 30 s et sur les
+    morceaux déjà vus.
+    """
+    import time as _temps
+    memo = _cache_get("bib:" + recherche)
+    if memo is not None:
+        pioche = list(memo)
+    else:
+        try:
+            r = requests.get(f"{BASE}/search/track", params={
+                "q": recherche, "limit": 45, "index": 0}, timeout=10)
+            data = r.json().get("data") or []
+        except Exception:
+            data = []
+        pioche = [t for t in data if t.get("preview")]
+        _cache_set("bib:" + recherche, pioche)
+    if not pioche:
+        return []
+    random.shuffle(pioche)
+    rendus = []
+    for t in pioche:
+        if len(rendus) >= limite:
+            break
+        if not t.get("preview"):
+            continue
+        piste = {
+            "titre": t["title"],
+            "artiste": t["artist"]["name"],
+            "album": t["album"]["title"],
+            "preview": t["preview"],
+            "lien": t.get("link", ""),
+            "image": t.get("album", {}).get("cover_medium", ""),
+        }
+        if deja_vues(piste, vus):
+            continue
+        rendus.append(piste)
+    return rendus
 
 
 def genre_depuis_nom(nom_artiste: str, cles_valides: list) -> str | None:

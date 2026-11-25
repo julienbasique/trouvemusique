@@ -167,3 +167,32 @@ STYLES = {
         ],
     },
 }
+
+# Requête de remplissage dans TOUTE la bibliothèque Deezer (par style) —
+# utilisée quand les semences curées s'épuisent (session affinée).
+DEEZER_QUERIES = {
+    "rock_classique": 'genre:"Rock"',
+    "metal": 'genre:"Metal"',
+    "punk": 'genre:"Punk"',
+    "indie": 'genre:"Indie"',
+    "pop": 'genre:"Pop"',
+    "electro": 'genre:"Electro"',
+    "techno": 'genre:"Techno"',
+    "rap_fr": 'rap français',
+    "rap_us": 'genre:"Rap/Hip Hop"',
+    "rnb": 'genre:"R&B"',
+    "funk": 'funk disco groove',
+    "chanson_fr": 'genre:"Chanson Française"',
+    "variete_80s": 'variétés françaises années 80',
+    "jazz": 'genre:"Jazz"',
+    "blues": 'genre:"Blues"',
+    "reggae": 'genre:"Reggae"',
+    "latino": 'salsa reggaeton latino',
+    "classique": 'genre:"Classique"',
+    "cinema": 'bande originale film soundtrack',
+    "lofi": 'lofi chill beats',
+    "folk_country": 'genre:"Folk"',
+    "kpop": 'k-pop',
+    "afro": 'afrobeat zouk',
+    "musette": 'musette accordéon',
+}
