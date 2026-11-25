@@ -12,6 +12,12 @@ styles) que tu écoutes en un clic (extraits de 30 s, bouton ▶).
 propose d'autres pistes — à force, la boîte apprend ce que tu aimes
 (sessions mémorisées dans data/).
 
+## Le code
+
+Dépôt public : https://github.com/julienbasique/trouvemusique
+(l'installation chez quelqu'un : 6 lignes de la section « Installer »,
+adaptées à ce projet : `git clone` + venv + `pip install` + `./run.sh`).
+
 ## Comment ça marche
 
 ```
