@@ -4,6 +4,22 @@ Chaque version est une copie complète qui marchait (code + base de sessions).
 Copies dans `~/trouvemusique-versions/` — historique technique : dépôt git ici.
 Nouvelle version : `scripts/nouvelle_version.sh <X.Y> "ce qui change"`.
 
+## v2.1 — 25 novembre 2026 (vendredi)
+
+L'application devient interactive et fluide (demande de Julien) :
+
+- **Écran d'attente vivant** pendant la recherche (points qui dansent + « on
+  fouille 24 styles ») — plus de page qui disparaît en blanc.
+- **Touche 1 à 6 au clavier** pour répondre, avec le numéro affiché dans
+  chaque option ; petit temps de confirmation au clic avant de passer.
+- **Pistes qui glissent en douceur** à l'apparition (décalage en cascade).
+- **Barre de progression jaune** sous le titre joué (les 30 s se voient),
+  ligne surlignée, bouton ❚❚.
+- **Le son ne se coupe plus** quand on raffine avec 👍/👎 (le lecteur est
+  global, la lignée en lecture se retrouve toute seule).
+- **Toasts** : les messages (« raffiné d'après ton retour ») glissent en bas
+  et se retirnent seuls ; gestion d'erreur propre si le réseau blesse.
+
 ## v2.0 — 25 novembre 2026 (jeudi soir, toujours)
 
 **Prêt pour le nuage** (« faire tourner sans ton PC ») :

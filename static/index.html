@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TrouveTaMusique</title>
   <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/static/style.css?v=8">
+  <link rel="stylesheet" href="/static/style.css?v=9">
 </head>
 <body>
   <header class="header">
@@ -23,6 +23,12 @@
         <input id="artiste-input" class="texte" type="text" autocomplete="off">
         <button id="btn-fini" class="primaire">Voilà, trouve-moi ça →</button>
       </div>
+    </section>
+
+    <!-- ÉCRAN ATTENTE -->
+    <section id="chargement" class="card hidden">
+      <p class="compteur">On fouille 24 styles, on sort les tubes…</p>
+      <div class="points-anim"><span></span><span></span><span></span></div>
     </section>
 
     <!-- ÉCRAN RÉSULTATS -->
@@ -44,9 +50,11 @@
 
   <audio id="lecteur" preload="none"></audio>
 
+  <div id="toast"></div>
+
   <footer class="footer">Extraits de 30 s via Deezer (gratuit, sans compte) —
   boutons j'aime/j'aime pas pour affiner. Tout tourne sur ton PC.</footer>
 
-  <script src="/static/app.js?v=8"></script>
+  <script src="/static/app.js?v=9"></script>
 </body>
 </html>
