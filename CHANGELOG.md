@@ -4,6 +4,18 @@ Chaque version est une copie complète qui marchait (code + base de sessions).
 Copies dans `~/trouvemusique-versions/` — historique technique : dépôt git ici.
 Nouvelle version : `scripts/nouvelle_version.sh <X.Y> "ce qui change"`.
 
+## v1.2 — 25 novembre 2026 (soir)
+
+Retour de Julien : v1.1 allait « trop perso ». Le quiz repart du bon côté :
+
+- Plus AUCUNE question qui sonde l'intérieur (identité, souvenirs d'enfance,
+  humeur mentale, quartier) — remplacées par des goûts LÉGERS : le weekend
+  idéal, l'endroit où on se sent bien, ta soirée type, ce qu'on met sur la
+  route, le moment de la journée préféré (+ voix & artiste).
+- 7 questions au total, toutes de bon goût, aucune gênante — testé : la
+  personne « bricolage du dimanche + vieux morceaux sûrs + soir » reçoit
+  Jazz, Lo-fi, Chanson française.
+
 ## v1.1 — 25 novembre 2026 (fin d'après-midi)
 
 Deux retours de Julien appliqués :
